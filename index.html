@@ -3,91 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>L'aventure de Pim's</title>
-    <link rel="stylesheet" href="/src/style.css" />
+    <title>Naissance d'un systeme solaire</title>
   </head>
   <body>
-
-    <div id="slider">
-
-      <!-- Section 1 -->
-      <section id="section1">
-        <div id="circles"></div>
-        <div class="hero-text">
-          <h1 id="hero-title">L'aventure de Pim's</h1>
-          <p id="hero-subtitle">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
-        </div>
-      </section>
-
-      <!-- Section 2 -->
-      <section id="section2">
-        <svg
-          id="s-svg"
-          viewBox="0 -146 506 1262"
-          preserveAspectRatio="xMidYMid meet"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            id="motion-path"
-            d="M252.977 1116C456.948 955.117 456.948 645.883 252.977 485C49.0048 324.117 49.0048 14.8828 252.977 -146"
-            stroke="black"
-            stroke-width="200"
-            stroke-linecap="round"
-            fill="none"
-          />
-        </svg>
-        <div id="s-circles"></div>
-      </section>
-
-      <!-- Section 3 -->
-      <section id="section3">
-        <!-- Tout dans le même viewBox 0 0 441 1024 — path + rectangles alignés -->
-        <svg id="s3-deco" viewBox="0 0 441 1024" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-
-          <defs>
-            <linearGradient id="pims-grad" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
-              <stop stop-color="#FF1573"/>
-              <stop offset="1" stop-color="#AE0347"/>
-            </linearGradient>
-            <!-- Forme Pim's (197x211) centrée sur 0,0 pour faciliter le positionnement -->
-            <g id="pims-shape">
-              <path d="M27.9401 5.23211L131.192 29.3039L189.595 182.062L103.194 197.049L77.6758 204.833L6.24827 15.7118L27.9401 5.23211Z" fill="url(#pims-grad)"/>
-              <path d="M27.9401 5.23211L131.192 29.3039L189.595 182.062L103.194 197.049M27.9401 5.23211L103.194 197.049M27.9401 5.23211L6.24827 15.7118L77.6758 204.833L103.194 197.049" stroke="#BF034E" stroke-width="9.92732"/>
-            </g>
-          </defs>
-
-          <!-- Tube rose en haut droite — adapté au viewBox 441x1024 -->
-          <path d="M380 0C530 -100 530 -350 380 -480" stroke="#FF1573" stroke-width="120" stroke-linecap="square" fill="none"/>
-
-          <!-- Pim's gauche haut — centré sur le point de rebond x≈18, y≈404 -->
-          <use href="#pims-shape" transform="translate(-75, 305) rotate(-15, 95, 105)"/>
-
-          <!-- Pim's droite milieu — centré sur x≈390, y≈572, retourné -->
-          <use href="#pims-shape" transform="translate(441, 468) scale(-1,1) rotate(10, 95, 105)"/>
-
-          <!-- Pim's gauche bas — centré sur x≈124, y≈781 -->
-          <use href="#pims-shape" transform="translate(-30, 685) rotate(-20, 95, 105)"/>
-
-          <!-- Path guide visible en noir (à masquer une fois validé) -->
-          <path
-            id="s3-motion-path"
-            d="M355.566 202C75.0158 366.901 -10.647 386.871 1.63168 400.943C5.51624 405.395 12.5098 405.204 18.3675 404.432C210.666 379.075 306.852 403.042 408.244 521.817C423.707 539.931 412.762 567.34 389.406 571.998C231.637 603.465 147.191 642.048 89.9381 734.736C76.075 757.179 97.647 783.105 123.901 780.535C272.331 766.008 310.597 861.531 310.597 1024"
-            fill="none"
-            stroke="black"
-            stroke-width="3"
-          />
-        </svg>
-
-        <div id="s3-pims"></div>
-      </section>
-
-    </div>
-
-    <script type="module" src="/src/main.ts"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
