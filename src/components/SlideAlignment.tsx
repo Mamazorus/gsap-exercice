@@ -77,12 +77,15 @@ export default function SlideAlignment({ isActive }: Props) {
           },
         });
 
-        // Ticker: swap visibility based on Y position relative to sun center
+        // Ticker: swap layers + scale for depth effect
+        // ty ranges from -ry (top) to +ry (bottom) — map to scale 0.6→1.0
         gsap.ticker.add(() => {
-          const ty = gsap.getProperty(front, "y") as number;
-          const isBehind = ty < 0; // negative y offset = above sun center = behind
-          gsap.set(front,  { opacity: isBehind ? 0 : 1 });
-          gsap.set(behind, { opacity: isBehind ? 1 : 0 });
+          const ty       = gsap.getProperty(front, "y") as number;
+          const isBehind = ty < 0;
+          const scale    = 0.6 + 0.4 * ((ty + planet.ry) / (2 * planet.ry));
+          const s        = Math.max(0.6, Math.min(1.0, scale));
+          gsap.set(front,  { opacity: isBehind ? 0 : 1, scale: s, transformOrigin: "center center" });
+          gsap.set(behind, { opacity: isBehind ? 1 : 0, scale: s, transformOrigin: "center center" });
         });
       });
 
