@@ -44,22 +44,18 @@ export default function SlideAlignment({ isActive }: Props) {
         const behind = behindRefs.current[i];
         const front  = frontRefs.current[i];
 
-        // Start both copies at the sun center, hidden
         gsap.set([behind, front], { x: 0, y: 0, opacity: 0 });
 
         const delay = i * 0.4;
 
-        // Fade in at sun center, then glide to the orbit entry point (left tip = cx - rx, cy)
-        // The orbit guide starts at M cx-rx, cy so we animate there before handing off
         gsap.to([behind, front], {
-          x: -planet.rx,   // offset from original cx=SUN_CX → lands on SUN_CX - rx
+          x: -planet.rx,
           y: 0,
           opacity: 1,
           duration: 0.9,
           ease: "power2.out",
           delay,
           onComplete: () => {
-            // Hand off to MotionPath orbit — both layers locked in sync
             const orbitConfig = {
               motionPath: {
                 path: `#${planet.orbitId}`,
@@ -77,8 +73,6 @@ export default function SlideAlignment({ isActive }: Props) {
           },
         });
 
-        // Ticker: swap layers + scale for depth effect
-        // ty ranges from -ry (top) to +ry (bottom) — map to scale 0.6→1.0
         gsap.ticker.add(() => {
           const ty       = gsap.getProperty(front, "y") as number;
           const isBehind = ty < 0;
@@ -88,8 +82,6 @@ export default function SlideAlignment({ isActive }: Props) {
           gsap.set(behind, { opacity: isBehind ? 1 : 0, scale: s, transformOrigin: "center center" });
         });
       });
-
-      // cleanup handled by useGSAP scope
     },
     { scope: containerRef, dependencies: [isActive] }
   );
@@ -112,7 +104,6 @@ export default function SlideAlignment({ isActive }: Props) {
         style={{ position: "absolute", inset: 0 }}
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Invisible full ellipses — MotionPath guides */}
         {PLANETS.map((planet) => (
           <path
             key={planet.orbitId}
@@ -123,7 +114,6 @@ export default function SlideAlignment({ isActive }: Props) {
           />
         ))}
 
-        {/* Top arcs — behind sun */}
         {PLANETS.map((planet) => (
           <path
             key={`arc-top-${planet.id}`}
@@ -136,7 +126,6 @@ export default function SlideAlignment({ isActive }: Props) {
           />
         ))}
 
-        {/* Behind-sun planets */}
         {PLANETS.map((planet, i) => (
           <circle
             key={`behind-${planet.id}`}
@@ -146,11 +135,9 @@ export default function SlideAlignment({ isActive }: Props) {
           />
         ))}
 
-        {/* Sun */}
         <circle cx={SUN_CX} cy={SUN_CY} r="100" fill="var(--accent-orange)" />
         <circle cx={SUN_CX} cy={SUN_CY} r="68" fill="none" stroke="var(--accent-brick)" strokeWidth="2" opacity="0.35" />
 
-        {/* Bottom arcs — in front of sun */}
         {PLANETS.map((planet) => (
           <path
             key={`arc-bottom-${planet.id}`}
@@ -163,7 +150,6 @@ export default function SlideAlignment({ isActive }: Props) {
           />
         ))}
 
-        {/* Front-of-sun planets */}
         {PLANETS.map((planet, i) => (
           <circle
             key={`front-${planet.id}`}
@@ -187,7 +173,7 @@ export default function SlideAlignment({ isActive }: Props) {
           color: "var(--ink)",
         }}
       >
-        02 / ALIGNMENT
+        02 / FORMATION
       </h2>
     </div>
   );

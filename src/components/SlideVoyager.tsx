@@ -421,7 +421,7 @@ export default function SlideVoyager({ isActive }: Props) {
           color: "var(--ink)",
         }}
       >
-        03 / VOYAGER
+        03 / SYSTÈME
       </h2>
     </div>
   );
